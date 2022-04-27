@@ -1,0 +1,25 @@
+
+h1{
+    text-align: center;
+}
+
+.field{
+    display:grid;
+    grid-template-columns: repeat(8,40px);
+    }
+    
+button
+    {
+    height:40px;
+    font-size:24px;
+    }
+
+img{
+    border:1px solid black;
+    width: 40px;
+    height: 40px;
+}
+.container {
+    width: 379px;
+    border:1px solid black;  
+}
