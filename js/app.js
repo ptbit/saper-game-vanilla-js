@@ -9,7 +9,7 @@ for(i = 0; i<MINES_COUNT; i++)
 }
 
 
-//Добавляем кнопку старта новой игры
+//Добавляем кнопку старта новой игры (смайлик)
 const newGame1 = '<button class="btn_new_game" id="btn_new_game"></button>' // фон кнопки пока игра не выиграна
 const newGame2 = '<button class="btn_new_game2" id="btn_new_game"></button>'// фон кнопки после победы
 const newGame3 = '<button class="btn_new_game3" id="btn_new_game"></button>'// фон кнопки после проиграша
@@ -26,7 +26,6 @@ btnNG.addEventListener("click",newGame) // вешаем слушатель со�
 function newGame (){
     window.location.reload();
 }
-
 
 
 function update(matrix) {

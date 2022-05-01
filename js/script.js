@@ -154,7 +154,7 @@ function clearCount(matrix)
     }
 }
 
-//конец функций
+//функция конца игры через проиграш
 function gameOwer() {
     console.log('Game OWER! You LOSE!')
     btnSlot.innerHTML = newGame3
