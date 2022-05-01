@@ -174,6 +174,7 @@ function checWin(matrix)
             if (cell.mine == true && cell.flag == true)
             {
                 winCount ++
+                // console.log('count')
             }
       }
     }
