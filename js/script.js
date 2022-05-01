@@ -1,6 +1,6 @@
 const WIDTH = 9
 const HEIGHT = 9 
-const MINES_COUNT = 8
+const MINES_COUNT = 1
 
 
 // создаем матрицу из обьектов
@@ -154,7 +154,34 @@ function clearCount(matrix)
     }
 }
 
+//конец функций
 function gameOwer() {
-    alert("Game OWER! You LOSE!");
+    console.log('Game OWER! You LOSE!')
+    btnSlot.innerHTML = newGame3
+    let btnNG = document.querySelector("#btn_new_game")//находим кнопку по id
+    btnNG.addEventListener("click",newGame) // вешаем слушатель события на клик 
 }
-//////////////////конец функций
+
+//функция проверки конца игры через ПОБЕДУ
+function checWin(matrix) 
+{
+    let winCount = 0
+    for (let i = 0; i <9; i++)
+    {
+      for (let j = 0; j <9; j++)
+      {
+        const cell = matrix[i][j]
+            if (cell.mine == true && cell.flag == true)
+            {
+                winCount ++
+            }
+      }
+    }
+    if (winCount == MINES_COUNT)
+    {
+        console.log('You Win The Game!')
+        btnSlot.innerHTML = newGame2
+        let btnNG = document.querySelector("#btn_new_game")//находим кнопку по id
+        btnNG.addEventListener("click",newGame) // вешаем слушатель события на клик 
+    }
+}

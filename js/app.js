@@ -9,6 +9,26 @@ for(i = 0; i<MINES_COUNT; i++)
 }
 
 
+//Добавляем кнопку старта новой игры
+const newGame1 = '<button class="btn_new_game" id="btn_new_game"></button>' // фон кнопки пока игра не выиграна
+const newGame2 = '<button class="btn_new_game2" id="btn_new_game"></button>'// фон кнопки после победы
+const newGame3 = '<button class="btn_new_game3" id="btn_new_game"></button>'// фон кнопки после проиграша
+
+let btnSlot = document.querySelector("#buttons") // находим  DIV для кнопок по id
+
+btnSlot.innerHTML = '' //чистим внутрянку
+btnSlot.innerHTML = newGame1 // делаем стартовый вид у кнопки
+
+let btnNG = document.querySelector("#btn_new_game")//находим кнопку по id
+btnNG.addEventListener("click",newGame) // вешаем слушатель события на клик 
+
+//функция аналогичная кнопке F5 с клавиатуры
+function newGame (){
+    window.location.reload();
+}
+
+
+
 function update(matrix) {
 const rMatrix = renderGame(matrix) //запускаем рендер матрицы
 const ggame = document.querySelector("#container")
@@ -16,7 +36,6 @@ ggame.innerHTML = ''
 ggame.append(rMatrix)
 
 const allImg = document.querySelectorAll("img")
-
 
 //----------------------------------------------------------------
 for (let i = 0; i < allImg.length; i++) 
@@ -256,26 +275,6 @@ function openCell (matrix,id)
     }
 }
 
-//функция проверки конца игры через ПОБЕДУ
-function checWin(matrix) 
-{
-    let winCount = 0
-    for (let i = 0; i <9; i++)
-    {
-      for (let j = 0; j <9; j++)
-      {
-        const cell = matrix[i][j]
-            if (cell.mine == true && cell.flag == true)
-            {
-                winCount ++
-            }
-      }
-    }
-    if (winCount == MINES_COUNT)
-    {
-        alert("You Win The Game!")
-    }
-}
 
 //функция убирающая у всех эл матрицы параметр подсказки, срабатывает при любом отжатии кнопки
 function antiPod(matrix)

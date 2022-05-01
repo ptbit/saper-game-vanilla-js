@@ -1,4 +1,3 @@
-
 h1{
     text-align: center;
 }
@@ -11,6 +10,7 @@ h1{
 button
     {
     height:40px;
+    width: 40px;
     font-size:24px;
     }
 
@@ -20,6 +20,27 @@ img{
     height: 40px;
 }
 .container {
-    width: 379px;
-    border:1px solid black;  
+    margin: 0 auto;
+    width: 378px;
+}
+.row {
+    height: 40px;
+}
+.btn_new_game {
+    border: 0;
+    background-image: url(./img/new-game-1.png);
+}
+.btn_new_game2 {
+    border: 0;
+    background-image: url(./img/new-game-2.png);
+}
+.btn_new_game3 {
+    border: 0;
+    background-image: url(./img/lose-game.png);
+}
+.buttons
+{
+    text-align: center;
+    border:1px;
+    padding-bottom: 10px;
 }
