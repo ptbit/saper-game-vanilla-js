@@ -1,6 +1,7 @@
-const WIDTH = 11
-const HEIGHT = 11 
-const MINES_COUNT = 11
+const WIDTH = 9
+const HEIGHT = 9 
+const MINES_COUNT = 2
+let flagCount = MINES_COUNT
 
 
 // создаем матрицу из обьектов

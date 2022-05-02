@@ -37,10 +37,26 @@ ggame.append(rMatrix)
 const allImg = document.querySelectorAll("img")
 
 //----------------------------------------------------------------
+//проверка на  победу
+let winCount = 0
+    for (let i = 0; i <WIDTH; i++)
+    {
+      for (let j = 0; j <HEIGHT; j++)
+      {
+        const cell = matrix[i][j]
+            if (cell.mine == true && cell.flag == true)
+            {
+                winCount ++
+            }
+      }
+    }
+    //если не победа вешаем на все картинки слушатель события
+if (winCount != MINES_COUNT) {
 for (let i = 0; i < allImg.length; i++) 
 {
     allImg[i].addEventListener("mousedown", imgClickD)
     allImg[i].addEventListener("mouseup", imgClickU)
+}
 }
 
 }
@@ -217,12 +233,45 @@ function putFlag (matrix,id)
             console.log('ФЛАГ')
             if (cell.flag == false) 
             {
-                cell.flag = true
+                if (flagCount>0){cell.flag = true}
+                flagCount--  //счетчик оставшихся флагов уменьшаем на 1
+                console.log('flagCount',flagCount)
                 console.log('меняем флаг на true')
+                //счтаем остаток неоткрытых ячеек за вычетом ячеек с флагами
+                let closetCells = 0
+                for (let i = 0; i <WIDTH; i++)
+                    {
+                    for (let j = 0; j <HEIGHT; j++)
+                        {
+                            const cell = matrix[i][j]
+                            if (!cell.show)
+                            {
+                                closetCells++
+                                // console.log('!cell.show',cell.id)
+                            }
+                            if (cell.flag)
+                            {
+                                closetCells--
+                                // console.log('cell.flag',cell.id)
+                            }
+                        }}
+                if (closetCells == flagCount){
+                    console.log('WINER!!!')
+                    for (let i = 0; i <WIDTH; i++)
+                    {
+                    for (let j = 0; j <HEIGHT; j++)
+                        {
+                            const cell = matrix[i][j]
+                            if (cell.mine) {cell.flag=true}
+                        }}
+                }
+                
             }
             else if (cell.flag == true) 
             {
                 cell.flag = false 
+                flagCount++
+                console.log('flagCount',flagCount)
                 console.log('меняем флаг на false')
             }
             console.log(cell)
@@ -274,6 +323,22 @@ function openCell (matrix,id)
         }
       }
     }
+    //счтаем остаток неоткрытых ячеек за вычетом ячеек с флагами
+    let closetCells = 0
+    for (let i = 0; i <WIDTH; i++)
+        {for (let j = 0; j <HEIGHT; j++)
+            {   const cell = matrix[i][j]
+                if (!cell.show)
+                {closetCells++}
+                if (cell.flag)
+                {closetCells--}
+            }}
+    if (closetCells == flagCount){
+        for (let i = 0; i <WIDTH; i++)
+        {for (let j = 0; j <HEIGHT; j++)
+            {const cell = matrix[i][j]
+            if (cell.mine) {cell.flag=true}}}}
+    checWin(matrix)
 }
 
 
