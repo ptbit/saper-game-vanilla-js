@@ -108,9 +108,9 @@ function checkButton(id){
     if (mouse.leftButtonDown && mouse.rightButtonDown)
     {
         console.log('----------------ДАБЛ-----------')
-        for (let i = 0; i <9; i++)
+        for (let i = 0; i <WIDTH; i++)
         {
-            for (let j = 0; j <9; j++)
+            for (let j = 0; j <HEIGHT; j++)
             {
                 const cell = matrix[i][j]
                 if (cell.id == id) {
@@ -121,26 +121,26 @@ function checkButton(id){
                         let countFlag = 0
                         //считаем количество флагов вокруг этой ячейки
                         if(j-1>-1){if (matrix[i][j-1].flag)countFlag++}//лево
-                        if(j+1<9){if (matrix[i][j+1].flag)countFlag++}//право
-                        if(i+1<9){if (matrix[i+1][j].flag)countFlag++}//ввниз
+                        if(j+1<HEIGHT){if (matrix[i][j+1].flag)countFlag++}//право
+                        if(i+1<WIDTH){if (matrix[i+1][j].flag)countFlag++}//ввниз
                         if(i-1>-1){if (matrix[i-1][j].flag)countFlag++}//вверх
-                        if(j-1>-1 && i+1<9){if (matrix[i+1][j-1].flag)countFlag++}//лево и низ
+                        if(j-1>-1 && i+1<WIDTH){if (matrix[i+1][j-1].flag)countFlag++}//лево и низ
                         if(j-1>-1 && i-1>-1){if (matrix[i-1][j-1].flag)countFlag++}//лево и вверх
-                        if(j+1<9 && i+1<9){if (matrix[i+1][j+1].flag)countFlag++}//право и низ
-                        if(j+1<9 && i-1>-1){if (matrix[i-1][j+1].flag)countFlag++}//право и вверх
+                        if(j+1<HEIGHT && i+1<WIDTH){if (matrix[i+1][j+1].flag)countFlag++}//право и низ
+                        if(j+1<HEIGHT && i-1>-1){if (matrix[i-1][j+1].flag)countFlag++}//право и вверх
                         console.log('флагов по периметру', countFlag)
                          //когда цифра БОЛЬШЕ количество флагов по периметру
                         if (cell.num > countFlag) {
                             console.log('нужна подсказка')
                             // всем ячейкам по периметру меняем картинку
                             if(j-1>-1){if (!matrix[i][j-1].show && !matrix[i][j-1].flag)matrix[i][j-1].pod = true}//лево
-                            if(j+1<9){if (!matrix[i][j+1].show && !matrix[i][j+1].flag)matrix[i][j+1].pod = true}//право
-                            if(i+1<9){if (!matrix[i+1][j].show && !matrix[i+1][j].flag)matrix[i+1][j].pod = true}//ввниз
+                            if(j+1<HEIGHT){if (!matrix[i][j+1].show && !matrix[i][j+1].flag)matrix[i][j+1].pod = true}//право
+                            if(i+1<WIDTH){if (!matrix[i+1][j].show && !matrix[i+1][j].flag)matrix[i+1][j].pod = true}//ввниз
                             if(i-1>-1){if (!matrix[i-1][j].show && !matrix[i-1][j].flag)matrix[i-1][j].pod = true}//вверх
-                            if(j-1>-1 && i+1<9){if (!matrix[i+1][j-1].show && !matrix[i+1][j-1].flag)matrix[i+1][j-1].pod = true}//лево и низ
+                            if(j-1>-1 && i+1<WIDTH){if (!matrix[i+1][j-1].show && !matrix[i+1][j-1].flag)matrix[i+1][j-1].pod = true}//лево и низ
                             if(j-1>-1 && i-1>-1){if (!matrix[i-1][j-1].show && !matrix[i-1][j-1].flag)matrix[i-1][j-1].pod = true}//лево и вверх
-                            if(j+1<9 && i+1<9){if (!matrix[i+1][j+1].show && !matrix[i+1][j+1].flag)matrix[i+1][j+1].pod = true}//право и низ
-                            if(j+1<9 && i-1>-1){if (!matrix[i-1][j+1].show && !matrix[i-1][j+1].flag)matrix[i-1][j+1].pod = true}//право и вверх
+                            if(j+1<HEIGHT && i+1<WIDTH){if (!matrix[i+1][j+1].show && !matrix[i+1][j+1].flag)matrix[i+1][j+1].pod = true}//право и низ
+                            if(j+1<HEIGHT && i-1>-1){if (!matrix[i-1][j+1].show && !matrix[i-1][j+1].flag)matrix[i-1][j+1].pod = true}//право и вверх
                             update(matrix)
                         }
                         //когда цифра и количество флагов по периметру ОДИНАКОВЫЕ
@@ -153,12 +153,12 @@ function checkButton(id){
                                 {openCell(matrix, matrix[i][j-1].id) }
                                 else if (!matrix[i][j-1].show && !matrix[i][j-1].flag) {matrix[i][j-1].show = true}}//лево
 
-                            if(j+1<9)
+                            if(j+1<HEIGHT)
                                 {if (!matrix[i][j+1].show && !matrix[i][j+1].flag && matrix[i][j+1].num == 0) 
                                 {openCell(matrix, matrix[i][j+1].id) }
                                 else if (!matrix[i][j+1].show && !matrix[i][j+1].flag) {matrix[i][j+1].show = true}}//право
 
-                            if(i+1<9)
+                            if(i+1<WIDTH)
                                 {let elNiz = matrix[i+1][j]
                                     if (!elNiz.show && !elNiz.flag && elNiz.num == 0) 
                                 {openCell(matrix, elNiz.id) }
@@ -170,7 +170,7 @@ function checkButton(id){
                                 {openCell(matrix, elVerh.id) }
                                 else if (!elVerh.show && !elVerh.flag) {elVerh.show = true}}//вверх
 
-                            if(j-1>-1 && i+1<9)
+                            if(j-1>-1 && i+1<WIDTH)
                                 {let elLNiz = matrix[i+1][j-1]
                                 if (!elLNiz.show && !elLNiz.flag && elLNiz.num == 0) 
                                 {openCell(matrix, elLNiz.id) }
@@ -182,13 +182,13 @@ function checkButton(id){
                                 {openCell(matrix, elLVerh.id) }
                                 else if (!elLVerh.show && !elLVerh.flag) {elLVerh.show = true}}//лево и вверх
 
-                            if(j+1<9 && i+1<9)
+                            if(j+1<HEIGHT && i+1<WIDTH)
                                 {let elPNiz = matrix[i+1][j+1]
                                 if (!elPNiz.show && !elPNiz.flag && elPNiz.num == 0) 
                                 {openCell(matrix, elPNiz.id) }
                                 else if (!elPNiz.show && !elPNiz.flag) {elPNiz.show = true}}//право и низ
 
-                            if(j+1<9 && i-1>-1)
+                            if(j+1<HEIGHT && i-1>-1)
                                 {let elPVerh = matrix[i-1][j+1]
                                 if (!elPVerh.show && !elPVerh.flag && elPVerh.num == 0) 
                                 {openCell(matrix, elPVerh.id) }
@@ -207,9 +207,9 @@ function checkButton(id){
 //функция для установки флага
 function putFlag (matrix,id) 
 {
-    for (let i = 0; i <9; i++)
+    for (let i = 0; i <WIDTH; i++)
     {
-      for (let j = 0; j <9; j++)
+      for (let j = 0; j <HEIGHT; j++)
       {
         const cell = matrix[i][j]
         if (cell.id == id && !cell.show)
@@ -234,9 +234,9 @@ function putFlag (matrix,id)
 //функция для открытия клетки
 function openCell (matrix,id)
 {
-    for (let i = 0; i <9; i++)
+    for (let i = 0; i <WIDTH; i++)
     {
-      for (let j = 0; j <9; j++)
+      for (let j = 0; j <HEIGHT; j++)
       {
         const cell = matrix[i][j]
         if (cell.id == id && !cell.show)
@@ -260,13 +260,13 @@ function openCell (matrix,id)
             // открываем все по периметру
             else {
                 if(j-1>-1){openCell(matrix, matrix[i][j-1].id)}//лево
-                if(j+1<9){openCell(matrix, matrix[i][j+1].id)}//право
-                if(i+1<9){openCell(matrix, matrix[i+1][j].id)}//ввниз
+                if(j+1<HEIGHT){openCell(matrix, matrix[i][j+1].id)}//право
+                if(i+1<WIDTH){openCell(matrix, matrix[i+1][j].id)}//ввниз
                 if(i-1>-1){openCell(matrix, matrix[i-1][j].id)}//вверх
-                if(j-1>-1 && i+1<9){openCell(matrix, matrix[i+1][j-1].id)}//лево и низ
+                if(j-1>-1 && i+1<WIDTH){openCell(matrix, matrix[i+1][j-1].id)}//лево и низ
                 if(j-1>-1 && i-1>-1){openCell(matrix, matrix[i-1][j-1].id)}//лево и вверх
-                if(j+1<9 && i+1<9){openCell(matrix, matrix[i+1][j+1].id)}//право и низ
-                if(j+1<9 && i-1>-1){openCell(matrix, matrix[i-1][j+1].id)}//право и вверх
+                if(j+1<HEIGHT && i+1<WIDTH){openCell(matrix, matrix[i+1][j+1].id)}//право и низ
+                if(j+1<HEIGHT && i-1>-1){openCell(matrix, matrix[i-1][j+1].id)}//право и вверх
             }
         }
         }
@@ -278,9 +278,9 @@ function openCell (matrix,id)
 //функция убирающая у всех эл матрицы параметр подсказки, срабатывает при любом отжатии кнопки
 function antiPod(matrix)
 {
-    for (let i = 0; i <9; i++)
+    for (let i = 0; i <WIDTH; i++)
     {
-      for (let j = 0; j <9; j++)
+      for (let j = 0; j <HEIGHT; j++)
       {
         const cell = matrix[i][j]
             if (cell.pod == true) {

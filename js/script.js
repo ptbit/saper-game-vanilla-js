@@ -1,6 +1,6 @@
-const WIDTH = 9
-const HEIGHT = 9 
-const MINES_COUNT = 1
+const WIDTH = 11
+const HEIGHT = 11 
+const MINES_COUNT = 11
 
 
 // создаем матрицу из обьектов
@@ -98,9 +98,9 @@ function renderGame (matrix) {
 //функция получающая матрицу и возвращающая случайный обьект без мины
 function getRandomFreeCell (matrix){
   let freeCells = []
-  for (let i = 0; i <9; i++)
+  for (let i = 0; i <WIDTH; i++)
   {
-      for (let j = 0; j <9; j++)
+      for (let j = 0; j <HEIGHT; j++)
       {
           let cell = matrix[i][j];
           if (!cell.mine)
@@ -120,22 +120,22 @@ function getRandomFreeCell (matrix){
 function createRandomeMine (matrix){
     let cellForMine = getRandomFreeCell(matrix)
     // console.log('Мина создана в ячейке №'+cellForMine)
-    for (let i = 0; i <9; i++) //расставляем цифры вокруг созданной мины
+    for (let i = 0; i <WIDTH; i++) //расставляем цифры вокруг созданной мины
   {
-      for (let j = 0; j <9; j++)
+      for (let j = 0; j <HEIGHT; j++)
       {
         if(matrix[i][j].id == cellForMine)
             {
                 if(matrix[i][j].mine == true){console.log('ОШИБКА!')}
                 matrix[i][j].mine = true
-                if (j<8){matrix[i][j+1].num +=1} //справа
+                if (j<HEIGHT-1){matrix[i][j+1].num +=1} //справа
                 if (j>0){matrix[i][j-1].num +=1} //слева
-                if (i<8){matrix[i+1][j].num +=1} //внизу
+                if (i<WIDTH-1){matrix[i+1][j].num +=1} //внизу
                 if (i>0){matrix[i-1][j].num +=1} //вверх
                 if (i>0 && j>0){matrix[i-1][j-1].num +=1} //вверх - лево
-                if (i>0 && j<8){matrix[i-1][j+1].num +=1} //вверх - право
-                if (i<8 && j>0){matrix[i+1][j-1].num +=1} //внизу - лево
-                if (i<8 && j<8){matrix[i+1][j+1].num +=1} //внизу - право
+                if (i>0 && j<HEIGHT-1){matrix[i-1][j+1].num +=1} //вверх - право
+                if (i<WIDTH-1 && j>0){matrix[i+1][j-1].num +=1} //внизу - лево
+                if (i<WIDTH-1 && j<HEIGHT-1){matrix[i+1][j+1].num +=1} //внизу - право
             }
       }
   }
@@ -144,9 +144,9 @@ function createRandomeMine (matrix){
 //функция которая удаляет число мин на клетке с миной
 function clearCount(matrix)
 {
-    for (let i = 0; i <9; i++) 
+    for (let i = 0; i <WIDTH; i++) 
     {
-        for (let j = 0; j <9; j++)
+        for (let j = 0; j <HEIGHT; j++)
         {
           if(matrix[i][j].mine == true)
               {matrix[i][j].num = 0}
@@ -166,9 +166,9 @@ function gameOwer() {
 function checWin(matrix) 
 {
     let winCount = 0
-    for (let i = 0; i <9; i++)
+    for (let i = 0; i <WIDTH; i++)
     {
-      for (let j = 0; j <9; j++)
+      for (let j = 0; j <HEIGHT; j++)
       {
         const cell = matrix[i][j]
             if (cell.mine == true && cell.flag == true)

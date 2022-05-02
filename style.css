@@ -21,10 +21,13 @@ img{
 }
 .container {
     margin: 0 auto;
-    width: 378px;
+    width: 100%;
+    text-align: center;
+    /* width: 378px; */
 }
 .row {
     height: 40px;
+    width: 100%;
 }
 .btn_new_game {
     border: 0;
