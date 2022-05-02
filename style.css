@@ -41,6 +41,18 @@ img{
     border: 0;
     background-image: url(./img/lose-game.png);
 }
+.flag {
+    margin: 5px;
+    text-align: center;
+    border:1px;
+    padding-bottom: 10px;
+}
+
+.flagLeftCounter {
+    border: 0;
+    background-color: transparent;
+    background-image: url(./img/flag.png);
+}
 .buttons
 {
     text-align: center;

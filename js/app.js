@@ -13,11 +13,15 @@ for(i = 0; i<MINES_COUNT; i++)
 const newGame1 = '<button class="btn_new_game" id="btn_new_game"></button>' // фон кнопки пока игра не выиграна
 const newGame2 = '<button class="btn_new_game2" id="btn_new_game"></button>'// фон кнопки после победы
 const newGame3 = '<button class="btn_new_game3" id="btn_new_game"></button>'// фон кнопки после проиграша
+const flagLeftCounter = '<button disabled="true" class="flagLeftCounter" id="flagLeftCounter"></button>' //картинка флага
 
 let btnSlot = document.querySelector("#buttons") // находим  DIV для кнопок по id
+let flagSlot = document.querySelector("#flag") // находим  DIV для флага по id
 
 btnSlot.innerHTML = '' //чистим внутрянку
 btnSlot.innerHTML = newGame1 // делаем стартовый вид у кнопки
+flagSlot.innerHTML = '' //чистим внутрянку
+flagSlot.innerHTML = flagLeftCounter + flagCount
 
 let btnNG = document.querySelector("#btn_new_game")//находим кнопку по id
 btnNG.addEventListener("click",newGame) // вешаем слушатель события на клик 
@@ -39,6 +43,7 @@ const allImg = document.querySelectorAll("img")
 //----------------------------------------------------------------
 checWin(matrix)
 console.log('Осталось флагов:',flagCount)
+flagSlot.innerHTML = flagLeftCounter + flagCount
 // console.log(closetCells)
 //проверка на  победу
 let winCount = 0
@@ -266,6 +271,7 @@ function putFlag (matrix,id)
             {
                 if (flagCount>0){cell.flag = true}
                 flagCount--  //счетчик оставшихся флагов уменьшаем на 1
+                flagSlot.innerHTML = flagLeftCounter + flagCount
                 console.log('flagCount',flagCount)
                 console.log('меняем флаг на true')
                 //считаем остаток неоткрытых ячеек за вычетом ячеек с флагами
@@ -302,6 +308,7 @@ function putFlag (matrix,id)
             {
                 cell.flag = false 
                 flagCount++
+                flagSlot.innerHTML = flagLeftCounter + flagCount
                 console.log('flagCount',flagCount)
                 console.log('меняем флаг на false')
             }
