@@ -37,6 +37,9 @@ ggame.append(rMatrix)
 const allImg = document.querySelectorAll("img")
 
 //----------------------------------------------------------------
+checWin(matrix)
+console.log('Осталось флагов:',flagCount)
+// console.log(closetCells)
 //проверка на  победу
 let winCount = 0
     for (let i = 0; i <WIDTH; i++)
@@ -218,6 +221,34 @@ function checkButton(id){
             }
         }
     }
+    //считаем остаток неоткрытых ячеек за вычетом ячеек с флагами
+    let closetCells = 0
+    for (let i = 0; i <WIDTH; i++)
+        {
+        for (let j = 0; j <HEIGHT; j++)
+            {
+                const cell = matrix[i][j]
+                if (!cell.show)
+                {
+                    closetCells++
+                    // console.log('!cell.show',cell.id)
+                }
+                if (cell.flag)
+                {
+                    closetCells--
+                    // console.log('cell.flag',cell.id)
+                }
+            }}
+    if (closetCells == flagCount){
+        console.log('WINER!!!')
+        for (let i = 0; i <WIDTH; i++)
+        {
+        for (let j = 0; j <HEIGHT; j++)
+            {
+                const cell = matrix[i][j]
+                if (cell.mine) {cell.flag=true}
+            }}
+    }
 }
 
 //функция для установки флага
@@ -237,7 +268,7 @@ function putFlag (matrix,id)
                 flagCount--  //счетчик оставшихся флагов уменьшаем на 1
                 console.log('flagCount',flagCount)
                 console.log('меняем флаг на true')
-                //счтаем остаток неоткрытых ячеек за вычетом ячеек с флагами
+                //считаем остаток неоткрытых ячеек за вычетом ячеек с флагами
                 let closetCells = 0
                 for (let i = 0; i <WIDTH; i++)
                     {
@@ -278,7 +309,7 @@ function putFlag (matrix,id)
         }
       }
     }
-    checWin(matrix)
+    // checWin(matrix)
 }
 //функция для открытия клетки
 function openCell (matrix,id)
@@ -338,7 +369,7 @@ function openCell (matrix,id)
         {for (let j = 0; j <HEIGHT; j++)
             {const cell = matrix[i][j]
             if (cell.mine) {cell.flag=true}}}}
-    checWin(matrix)
+    // checWin(matrix)
 }
 
 

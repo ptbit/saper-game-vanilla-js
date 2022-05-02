@@ -1,6 +1,6 @@
 const WIDTH = 9
 const HEIGHT = 9 
-const MINES_COUNT = 2
+const MINES_COUNT = 10
 let flagCount = MINES_COUNT
 
 
@@ -199,5 +199,6 @@ function checWin(matrix)
         btnSlot.innerHTML = newGame2
         let btnNG = document.querySelector("#btn_new_game")//находим кнопку по id
         btnNG.addEventListener("click",newGame) // вешаем слушатель события на клик 
+   
     }
 }
