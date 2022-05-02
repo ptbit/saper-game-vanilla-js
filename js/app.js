@@ -219,9 +219,7 @@ function checkButton(id){
                                 else if (!elPVerh.show && !elPVerh.flag) {elPVerh.show = true}}//право и вверх
 
                         }
-
                     }
-                
                 }
             }
         }
@@ -251,7 +249,13 @@ function checkButton(id){
         for (let j = 0; j <HEIGHT; j++)
             {
                 const cell = matrix[i][j]
-                if (cell.mine) {cell.flag=true}
+                if (cell.mine) {
+                    cell.flag=true
+                    if  (flagCount>0){
+                    flagCount--
+                    flagSlot.innerHTML = flagLeftCounter + flagCount}
+
+                }
             }}
     }
 }
@@ -269,7 +273,11 @@ function putFlag (matrix,id)
             console.log('ФЛАГ')
             if (cell.flag == false) 
             {
-                if (flagCount>0){cell.flag = true}
+                if (flagCount>0){
+                    cell.flag = true
+                    flagCount--
+
+                }
                 flagCount--  //счетчик оставшихся флагов уменьшаем на 1
                 flagSlot.innerHTML = flagLeftCounter + flagCount
                 console.log('flagCount',flagCount)
@@ -299,7 +307,13 @@ function putFlag (matrix,id)
                     for (let j = 0; j <HEIGHT; j++)
                         {
                             const cell = matrix[i][j]
-                            if (cell.mine) {cell.flag=true}
+                            if (cell.mine) {
+                                
+                                cell.flag=true
+                                if  (flagCount>0){
+                                flagCount--
+                                flagSlot.innerHTML = flagLeftCounter + flagCount}
+                            }
                         }}
                 }
                 
@@ -375,7 +389,12 @@ function openCell (matrix,id)
         for (let i = 0; i <WIDTH; i++)
         {for (let j = 0; j <HEIGHT; j++)
             {const cell = matrix[i][j]
-            if (cell.mine) {cell.flag=true}}}}
+            if (cell.mine) {
+                cell.flag=true
+                if  (flagCount>0){
+                flagCount--
+                    flagSlot.innerHTML = flagLeftCounter + flagCount}
+            }}}}
     // checWin(matrix)
 }
 

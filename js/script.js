@@ -1,6 +1,6 @@
-const WIDTH = 9
-const HEIGHT = 9 
-const MINES_COUNT = 10
+const WIDTH = 12
+const HEIGHT = 20
+const MINES_COUNT = 3
 let flagCount = MINES_COUNT
 
 
