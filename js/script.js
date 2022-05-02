@@ -22,6 +22,7 @@ function creatematrix (width, height)
                 rClick: false,
                 pod: false,
                 show: false,
+                boom: false,
             })
         }
         mas.push(row)
@@ -55,6 +56,10 @@ function renderGame (matrix) {
                 }
                 if(cell.mine === true && cell.show === true)//рисуем мину
                 {
+                    if (cell.boom === true) {
+                        img.src="./img/red-mine.png"    
+                    }
+                    else
                     img.src="./img/mine.png"
                     gameOwer() //запуск функции конца игры
                     continue
@@ -160,6 +165,15 @@ function gameOwer() {
     btnSlot.innerHTML = newGame3
     let btnNG = document.querySelector("#btn_new_game")//находим кнопку по id
     btnNG.addEventListener("click",newGame) // вешаем слушатель события на клик 
+    for (let i = 0; i <WIDTH; i++)
+    {
+      for (let j = 0; j <HEIGHT; j++)
+      {
+        const cell = matrix[i][j]
+            cell.show = true
+            
+      }
+    }
 }
 
 //функция проверки конца игры через ПОБЕДУ

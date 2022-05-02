@@ -245,7 +245,9 @@ function openCell (matrix,id)
              if (cell.flag == true) {continue}
 
             //проверяем на мину
-            if(cell.mine == true){cell.show = true 
+            if(cell.mine == true){
+                cell.show = true 
+                cell.boom = true
                 continue}
            // открываем ячейку если на ней нет флага и мины
             if (cell.show == true){
