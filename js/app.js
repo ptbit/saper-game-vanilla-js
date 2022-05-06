@@ -18,10 +18,10 @@ const flagLeftCounter = 'Осталось <button disabled="true" class="flagLef
 let btnSlot = document.querySelector("#buttons") // находим  DIV для кнопок по id
 let flagSlot = document.querySelector("#flag") // находим  DIV для флага по id
 
-btnSlot.innerHTML = '' //чистим внутрянку
+// btnSlot.innerHTML = '' //чистим внутрянку
 btnSlot.innerHTML = newGame1 // делаем стартовый вид у кнопки
-flagSlot.innerHTML = '' //чистим внутрянку
-flagSlot.innerHTML = flagLeftCounter + flagCount
+// flagSlot.innerHTML = '' //чистим внутрянку
+// flagSlot.innerHTML = flagLeftCounter + flagCount
 
 let btnNG = document.querySelector("#btn_new_game")//находим кнопку по id
 btnNG.addEventListener("click",newGame) // вешаем слушатель события на клик 
@@ -42,8 +42,8 @@ const allImg = document.querySelectorAll("img")
 
 //----------------------------------------------------------------
 checWin(matrix)
-console.log('Осталось флагов:',flagCount)
-flagSlot.innerHTML = flagLeftCounter + flagCount
+// console.log('Осталось флагов:',flagCount)
+// flagSlot.innerHTML = flagLeftCounter + flagCount
 // console.log(closetCells)
 //проверка на  победу
 let winCount = 0
@@ -250,7 +250,7 @@ function checkButton(id){
             {
                 const cell = matrix[i][j]
                 if (cell.mine) {
-                    cell.flag=true
+                    cell.flag = true
                 }
             }}
     }
@@ -270,14 +270,15 @@ function putFlag (matrix,id)
             if (cell.flag == false) 
             {
                 if (flagCount>0){
+                    console.log('LLL2')
                     cell.flag = true
                     flagCount--
 
                 }
                 // flagCount--  //счетчик оставшихся флагов уменьшаем на 1
-                flagSlot.innerHTML = flagLeftCounter + flagCount
-                console.log('flagCount',flagCount)
-                console.log('меняем флаг на true')
+                // flagSlot.innerHTML = flagLeftCounter + flagCount
+                // console.log('flagCount',flagCount)
+                // console.log('меняем флаг на true')
                 //считаем остаток неоткрытых ячеек за вычетом ячеек с флагами
                 let closetCells = 0
                 for (let i = 0; i <WIDTH; i++)
@@ -304,11 +305,11 @@ function putFlag (matrix,id)
                         {
                             const cell = matrix[i][j]
                             if (cell.mine) {
-                                
-                                cell.flag=true
-                                if  (flagCount>0){
-                                flagCount--
-                                flagSlot.innerHTML = flagLeftCounter + flagCount}
+                                console.log('LLL3')
+                                cell.flag = true
+                                // if  (flagCount>0){
+                                // flagCount--
+                                // flagSlot.innerHTML = flagLeftCounter + flagCount}
                             }
                         }}
                 }
@@ -318,7 +319,7 @@ function putFlag (matrix,id)
             {
                 cell.flag = false 
                 flagCount++
-                flagSlot.innerHTML = flagLeftCounter + flagCount
+                // flagSlot.innerHTML = flagLeftCounter + flagCount
                 console.log('flagCount',flagCount)
                 console.log('меняем флаг на false')
             }
@@ -372,25 +373,26 @@ function openCell (matrix,id)
       }
     }
     //счтаем остаток неоткрытых ячеек за вычетом ячеек с флагами
-    let closetCells = 0
-    for (let i = 0; i <WIDTH; i++)
-        {for (let j = 0; j <HEIGHT; j++)
-            {   const cell = matrix[i][j]
-                if (!cell.show)
-                {closetCells++}
-                if (cell.flag)
-                {closetCells--}
-            }}
-    if (closetCells == flagCount){
-        for (let i = 0; i <WIDTH; i++)
-        {for (let j = 0; j <HEIGHT; j++)
-            {const cell = matrix[i][j]
-            if (cell.mine) {
-                cell.flag=true
-                if  (flagCount>0){
-                flagCount--
-                    flagSlot.innerHTML = flagLeftCounter + flagCount}
-            }}}}
+    // let closetCells = 0
+    // for (let i = 0; i <WIDTH; i++)
+    //     {for (let j = 0; j <HEIGHT; j++)
+    //         {   const cell = matrix[i][j]
+    //             if (!cell.show)
+    //             {closetCells++}
+    //             if (cell.flag)
+    //             {closetCells--}
+    //         }}
+    // if (closetCells == flagCount){
+    //     for (let i = 0; i <WIDTH; i++)
+    //     {for (let j = 0; j <HEIGHT; j++)
+    //         {const cell = matrix[i][j]
+    //         if (cell.mine) {
+    //             console.log('LLL4')
+    //             cell.flag = true
+    //             if  (flagCount>0){
+    //             flagCount--
+    //                 flagSlot.innerHTML = flagLeftCounter + flagCount}
+    //         }}}}
     // checWin(matrix)
 }
 
@@ -413,4 +415,5 @@ function antiPod(matrix)
 update(matrix)
 }
 
-// что ещё нужно
+// что ещё нужно:
+//убрать возможность кликать после проиграша

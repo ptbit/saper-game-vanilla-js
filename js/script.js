@@ -1,7 +1,12 @@
-const WIDTH = 12
-const HEIGHT = 20
-const MINES_COUNT = 3
+let widthSettings = document.getElementById('settings-1')
+let heighthSettings = document.getElementById('settings-2')
+let mineCountSettings = document.getElementById('settings-3')
+
+const WIDTH = parseInt(widthSettings.value)
+const HEIGHT = parseInt(heighthSettings.value)
+const MINES_COUNT = parseInt(mineCountSettings.value)
 let flagCount = MINES_COUNT
+
 
 
 // создаем матрицу из обьектов
@@ -59,10 +64,11 @@ function renderGame (matrix) {
                 {
                     if (cell.boom === true) {
                         img.src="./img/red-mine.png"    
+                        gameOwer() //запуск функции конца игры
+                        continue
                     }
                     else
                     img.src="./img/mine.png"
-                    gameOwer() //запуск функции конца игры
                     continue
                 }
              
@@ -164,6 +170,7 @@ function clearCount(matrix)
 function gameOwer() {
     console.log('Game OWER! You LOSE!')
     btnSlot.innerHTML = newGame3
+    btnSlot.append(img)
     let btnNG = document.querySelector("#btn_new_game")//находим кнопку по id
     btnNG.addEventListener("click",newGame) // вешаем слушатель события на клик 
     for (let i = 0; i <WIDTH; i++)
@@ -172,7 +179,6 @@ function gameOwer() {
       {
         const cell = matrix[i][j]
             cell.show = true
-            
       }
     }
 }
@@ -197,6 +203,7 @@ function checWin(matrix)
     {
         console.log('You Win The Game!')
         btnSlot.innerHTML = newGame2
+        btnSlot.append(img)
         let btnNG = document.querySelector("#btn_new_game")//находим кнопку по id
         btnNG.addEventListener("click",newGame) // вешаем слушатель события на клик 
    
