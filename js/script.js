@@ -1,13 +1,17 @@
-let widthSettings = document.getElementById('settings-1')
-let heighthSettings = document.getElementById('settings-2')
-let mineCountSettings = document.getElementById('settings-3')
+//достаем из локалсторежа инфу по настройкам игры
+let tempW = parseInt(localStorage.getItem('width'))
+let tempH = parseInt(localStorage.getItem('heght'))
+let tempM = parseInt(localStorage.getItem('minecount'))
+//если инфы нет присваеваем стандартные настройки
+if (!tempW) tempW = 9
+if (!tempH) tempH = 9
+if (!tempM) tempM = 9
+//заводим эти данные в программу 
+const WIDTH = tempW
+const HEIGHT = tempH
+const MINES_COUNT = tempM
 
-const WIDTH = parseInt(widthSettings.value)
-const HEIGHT = parseInt(heighthSettings.value)
-const MINES_COUNT = parseInt(mineCountSettings.value)
 let flagCount = MINES_COUNT
-
-
 
 // создаем матрицу из обьектов
 function creatematrix (width, height)
@@ -206,6 +210,12 @@ function checWin(matrix)
         btnSlot.append(img)
         let btnNG = document.querySelector("#btn_new_game")//находим кнопку по id
         btnNG.addEventListener("click",newGame) // вешаем слушатель события на клик 
+        console.log('ssssssssssssssssss')
+        console.log(settupBTN)
+        settupBTN.addEventListener("click",() => {
+            console.log('pppppppppppppppppp')
+            settings.classList.add('open')
+        })
    
     }
 }
