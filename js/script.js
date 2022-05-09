@@ -210,12 +210,12 @@ function checWin(matrix)
         btnSlot.append(img)
         let btnNG = document.querySelector("#btn_new_game")//находим кнопку по id
         btnNG.addEventListener("click",newGame) // вешаем слушатель события на клик 
-        console.log('ssssssssssssssssss')
-        console.log(settupBTN)
-        settupBTN.addEventListener("click",() => {
-            console.log('pppppppppppppppppp')
-            settings.classList.add('open')
-        })
+        // console.log('ssssssssssssssssss')
+        // console.log(settupBTN)
+        // settupBTN.addEventListener("click",() => {
+        //     console.log('pppppppppppppppppp')
+        //     settings.classList.add('open')
+        // })
    
     }
 }

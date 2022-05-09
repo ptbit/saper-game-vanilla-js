@@ -64,6 +64,11 @@ for (let i = 0; i < allImg.length; i++)
 {
     allImg[i].addEventListener("mousedown", imgClickD)
     allImg[i].addEventListener("mouseup", imgClickU)
+    if(allImg[i].id ==='settup') {
+        // console.log('нужно удалить eventListener с этой картинки', allImg[i])
+        allImg[i].removeEventListener("mousedown", imgClickD)
+        allImg[i].removeEventListener("mouseup", imgClickU)
+    }
 }
 }
 
